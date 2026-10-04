@@ -1,33 +1,52 @@
 # fleet-maintenance-system
-Full-stack web application for vehicle fleet tracking, maintenance scheduling, and role-based operational logs built with PHP and MySQL.
+Web application developed with PHP and MySQL/MariaDB to manage vehicle parking status, maintenance records, and user access levels.
 
 ---
 
 ## Overview
-Managing vehicle fleets and maintenance schedules manually often leads to missed inspection dates, disorganized service records, and data duplication. This project provides a centralized, web-based platform to streamline vehicle asset tracking, monitor ongoing maintenance routines, and maintain clean audit logs for fleet operations.
+A web-based database project designed to replace manual vehicle logs. It allows managing vehicle records, logging maintenance services performed by technicians, and restricting interface actions based on user roles.
 
 ---
 
 ## Key Features
-* **Vehicle Asset Tracking:** Create, read, update, and manage vehicle fleet records (plates, make, model, year, operational status).
-* **Maintenance & Service Logging:** Track scheduled preventative maintenance, fluid replacements, and mechanical repairs.
-* **Role-Based Access Control (RBAC):** Distinct workflows and access levels for administrators and operators to safeguard data integrity.
-* **Data Integrity & Validation:** Client-side input validation and sanitized backend queries to prevent erroneous or incomplete data entry.
+* **Vehicle Management:** Register, update, and view parked vehicles and vehicle records.
+* **Maintenance Logs:** Track service history, maintenance notes, and dates linked to specific vehicles.
+* **User Roles:** Differentiated access and views for administrators and workshop mechanics.
+* **Frontend Forms:** HTML/CSS interface with input validation for service and vehicle data entry.
 
 ---
 
 ## Tech Stack
 * **Backend:** PHP
 * **Database:** MySQL / MariaDB
-* **Frontend:** HTML5, CSS3, JavaScript
-* **Environment:** Apache (XAMPP / Local Server)
+* **Frontend:** HTML, CSS, JavaScript
+* **Local Server:** XAMPP (Apache)
 
 ---
 
-## Database Architecture
-The application relies on a normalized relational schema structured around core entities:
-* `users` (credentials, role assignments)
-* `vehicles` (identifiers, technical specs, status)
-* `maintenance_logs` (service records, costs, timestamps, assigned technician/operator)
+## Database Tables
+The database (`estacionamiento_db`) contains three main related tables:
+* `usuarios`: Stores usernames, passwords, and role designations (`admin`, `mecanico_a`, `mecanico_b`).
+* `coches`: Stores vehicle information and status.
+* `mantenimientos`: Stores service history linked to vehicles via foreign key (`id_coche`).
 
-*(Optional: Insert an ER diagram or schema snapshot here if available)*
+---
+
+## Setup & Running Locally
+
+1. Place the project folder inside your local server directory: `C:/xampp/htdocs/parking`
+2. Open your MySQL/MariaDB client and import the database file: `database/schema.sql`
+3. Start Apache and MySQL in XAMPP.
+4. Open your browser and navigate to: `http://localhost/parking`
+
+---
+
+## Demo Accounts
+
+Pre-configured test credentials included in `schema.sql`:
+
+| Role | Username | Password | Access Scope |
+| :--- | :--- | :--- | :--- |
+| **Admin** | `admin_mario` | `123456` | Full administrative access and vehicle/service logs |
+| **Mechanic (Zone A)** | `mecanico_armando` | `123456` | Maintenance logging and service forms |
+| **Mechanic (Zone B)** | `mecanico_benito` | `123456` | Maintenance logging and service forms |
